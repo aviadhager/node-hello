@@ -21,8 +21,8 @@ pipeline {
     stage('Push') {
       steps {
         sh '''sudo docker login -u hagerim -p tchgsar3
-#sudo docker tag node-hello$BUILD_ID hagerim/node-hello$BUILD_ID 
-#&& sudo docker push hagerim/node-hello$BUILD_ID 
+sudo docker tag node-hello$BUILD_ID hagerim/node-hello$BUILD_ID 
+&& sudo docker push hagerim/node-hello$BUILD_ID 
 '''
       }
     }
