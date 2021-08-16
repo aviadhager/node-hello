@@ -14,7 +14,7 @@ pipeline {
 
     stage('Build docker image') {
       steps {
-        sh 'docker build . -t node-hello:$BUILD_ID'
+        sh 'sudo docker build . -t node-hello:$BUILD_ID'
       }
     }
 
