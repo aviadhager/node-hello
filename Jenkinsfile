@@ -20,10 +20,12 @@ pipeline {
 
     stage('Push') {
       steps {
-        sh '''sudo docker login -u hagerim -p tchgsar3
-sudo docker tag node-hello:$BUILD_ID hagerim/node-hello:$BUILD_ID  && sudo docker tag node-hello:$BUILD_ID hagerim/node-hello:latest
- sudo docker push hagerim/node-hello:$BUILD_ID && sudo docker push hagerim/node-hello:latest
-'''
+              withDockerRegistry{credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/'
+                sh '''
+                  sudo docker tag node-hello:$BUILD_ID hagerim/node-hello:$BUILD_ID  && sudo docker tag node-hello:$BUILD_ID hagerim/node-hello:latest
+                  sudo docker push hagerim/node-hello:$BUILD_ID && sudo docker push hagerim/node-hello:latest
+                '''
+              }
       }
     }
 
